@@ -7,7 +7,7 @@ import Transcript from '@/components/Transcript';
 
 const VapiControls = ({ book }: { book: IBook }) => {
     const { status, isActive, messages, currentMessage, currentUserMessage,
-        duration, start, stop, clearErrors,
+        duration, start, stop, clearError,
     } = useVapi(book);
 
     const formatDuration = (seconds: number) => {
@@ -49,7 +49,9 @@ const VapiControls = ({ book }: { book: IBook }) => {
                             )}
                             <button
                                 onClick={isActive ? stop : start}
-                                disabled={status === 'connecting'} 
+                                disabled={status === 'connecting'}
+                                aria-label={isActive ? "Stop voice assistant" : "Start voice assistant" }
+                                title={ isActive ? "Stop voice assistant" : "Start voice assistant" }
                                 className={`vapi-mic-btn shadow-md !w-[60px] !h-[60px] z-10 ${isActive ? 'vapi-mic-button-active' : 'vapi-mic-button-inactive'}`}
                             >
                                 {
